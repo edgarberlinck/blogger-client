@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { getPosts } from './api';
+require('dotenv').config();
 
 class App extends Component {
+  componentDidMount() {
+    getPosts().then(response => console.log(response));
+  }
+  
   render() {
     return (
       <div className="App">
