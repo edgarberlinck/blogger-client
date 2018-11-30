@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { getPosts } from './api';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import PostList from './components/PostList';
+import TitleBar from './components/TitleBar';
+import { blogInfo } from './api';
+
 require('dotenv').config();
 
 class App extends Component {
   componentDidMount() {
-    getPosts().then(response => console.log(response));
+    //blogInfo().then(response => console.log(response));
   }
   
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Estou refazendo este site. Um dia eu acabo :)
-          </p>
-        </header>
+      <div>
+        <TitleBar />
+        <div className="container-fluid">
+          <BrowserRouter>
+            <Switch>
+              <Route path="/" component={PostList} />
+            </Switch>
+          </BrowserRouter>
+        </div>
       </div>
     );
   }
